@@ -104,14 +104,17 @@ export function* processHandler (readProcess) {
     }
 }
 
-    export function* main() {
-        yield take(AUTH.actions.SUCCEEDED)
-        const socket = yield call(connect)
-        yield put({type:ADD_USER, payload:socket.id})
-        yield fork(readMessages, socket)
-        yield fork(writeMessage, socket)
+export function* main() {
+    yield take(AUTH.actions.SUCCEEDED)
+    const socket = yield call(connect)
+    yield put({type:ADD_USER, payload:socket.id})
+    let readProcess = yield fork(readMessages, socket)
+    yield fork(writeMessage, socket)
 
-    }
+    yield fork(processHandler, readProcess)
+
+
+}
 
 
 export default function* saga() {
