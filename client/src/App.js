@@ -14,7 +14,6 @@ function App() {
 
       <div>
         <a href="http://localhost:3000/" target="_blank">
-          {" "}
           New Instance{" "}
         </a>
       </div>
