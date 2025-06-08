@@ -15,7 +15,7 @@ const initialState = {
 const middlewares = [sagaMiddleware];
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(...middlewares));
-
+//Depr. To review.
 const store = createStore(rootReducer, initialState, composedEnhancer);
 
 sagaMiddleware.run(rootSaga);
